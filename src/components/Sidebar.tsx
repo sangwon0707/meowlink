@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Star, Hash, Moon, Sun } from 'lucide-react'
+import { List, Star, Hash, Moon, Sun, Info } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { FilterType } from '../types'
@@ -46,13 +46,13 @@ export function Sidebar() {
   return (
     <div className="h-full flex flex-col bg-sidebar border-r border-sidebar-border">
       {/* Header */}
-      <div className="p-6 border-b border-sidebar-border">
+      <div className="p-3 border-b border-sidebar-border">
         <div className="flex items-center gap-4 mb-2">
-          <div className="w-16 h-16 bg-sidebar-accent rounded-xl flex items-center justify-center shadow-sm">
+          <div className="w-20 h-20 flex items-center justify-center">
             <img 
               src="../assets/meowlink-icon.png" 
               alt="MeowLink" 
-              className="w-12 h-12"
+              className="w-16 h-16"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none'
               }}
@@ -60,7 +60,16 @@ export function Sidebar() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-sidebar-foreground">MeowLink</h1>
-            <p className="text-sm text-sidebar-muted-foreground font-medium">{getDisplayVersion()}</p>
+            <div className="flex items-center gap-2">
+              <p className="text-sm text-sidebar-muted-foreground font-medium">{getDisplayVersion()}</p>
+              <button
+                onClick={() => window.open('https://github.com/sangwon0707/meowlink', '_blank')}
+                className="group relative inline-flex items-center justify-center p-1 rounded-full hover:bg-sidebar-accent transition-colors"
+                title="Visit GitHub Repository"
+              >
+                <Info className="h-3 w-3 text-sidebar-muted-foreground group-hover:text-sidebar-accent-foreground transition-colors" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

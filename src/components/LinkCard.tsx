@@ -20,6 +20,7 @@ import {
 import { LinkItem } from '../types'
 import { useApp } from '../contexts/AppContext'
 import { getFaviconUrl } from '../utils/urlUtils'
+import { truncateMemo } from '../utils/textUtils'
 
 interface LinkCardProps {
   link: LinkItem
@@ -129,7 +130,7 @@ export function LinkCard({ link, onEdit }: LinkCardProps) {
 
   return (
     <TooltipProvider>
-      <Card className="group relative bg-card border border-border hover:border-border/80 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 dark:hover:shadow-primary/5">
+      <Card className="group relative bg-card border border-border hover:border-border/80 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 dark:hover:shadow-primary/5 w-[415px]">
         
         <CardContent className="relative p-6 h-52">
           {/* Header with Favicon and Actions */}
@@ -291,11 +292,11 @@ export function LinkCard({ link, onEdit }: LinkCardProps) {
             ) : (
               <div 
                 onClick={handleStartMemoEdit}
-                className="min-h-[60px] cursor-pointer rounded-md border border-dashed border-border/50 hover:border-border transition-colors p-3 group/memo"
+                className="h-[60px] cursor-pointer rounded-md border border-dashed border-border/50 hover:border-border transition-colors p-3 group/memo flex items-start overflow-hidden"
               >
                 {link.memo ? (
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 font-medium group-hover/memo:text-foreground transition-colors">
-                    {link.memo}
+                  <p className="text-muted-foreground text-sm leading-relaxed font-medium group-hover/memo:text-foreground transition-colors break-words">
+                    {truncateMemo(link.memo)}
                   </p>
                 ) : (
                   <p className="text-muted-foreground/60 text-sm italic group-hover/memo:text-muted-foreground transition-colors">

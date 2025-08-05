@@ -315,7 +315,7 @@ export default function App() {
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+                  <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, 415px)', justifyContent: 'center' }}>
                     {filteredLinks.map(link => (
                       <LinkCard
                         key={link.id}

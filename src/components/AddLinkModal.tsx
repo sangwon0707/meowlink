@@ -27,13 +27,15 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
 
   useEffect(() => {
     if (link) {
+      // 기존 태그들도 대문자로 변환하여 표시
+      const uppercaseTags = link.tags.map(tag => tag.toUpperCase())
       setFormData({
         url: link.url,
         title: link.title,
         memo: link.memo || "",
-        tags: link.tags.join(", "),
+        tags: uppercaseTags.join(", "),
       })
-      setTagList(link.tags)
+      setTagList(uppercaseTags)
     } else {
       setFormData({
         url: "",
@@ -67,10 +69,10 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
       setFormData((prev) => ({ ...prev, [name]: value }))
     } else if (name === "tags") {
       setFormData((prev) => ({ ...prev, [name]: value }))
-      // Update tag list for preview
+      // Update tag list for preview with automatic uppercase conversion
       const tags = value
         .split(",")
-        .map((tag) => tag.trim())
+        .map((tag) => tag.trim().toUpperCase()) // 자동으로 대문자 변환
         .filter((tag) => tag.length > 0)
       setTagList(tags)
     } else {
