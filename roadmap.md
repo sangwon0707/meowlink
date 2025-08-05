@@ -279,7 +279,7 @@ By **2026**, MeowLink aims to be:
 
 **This roadmap is a living document** that evolves based on user feedback, technical constraints, and market opportunities. Priority and timeline adjustments are expected as we learn more about user needs and technical feasibility.
 
-💬 **Have feedback on this roadmap?** [Create an issue](https://github.com/yourusername/meowlink-app/issues) or join our [community discussions](https://github.com/yourusername/meowlink-app/discussions).
+💬 **Have feedback on this roadmap?** [Create an issue](https://github.com/sangwon0707/meowlink/issues) or join our [community discussions](https://github.com/sangwon0707/meowlink/discussions).
 
 ---
 

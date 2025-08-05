@@ -23,7 +23,7 @@ Frontend (React/TS) ←→ IPC Bridge (Preload) ←→ Backend (Node.js/SQLite)
 ## 📂 **Root Directory Structure**
 
 ```
-meowlink-app/
+meowlink/
 ├── 📄 main.js                    # Electron main process entry point
 ├── 📄 preload.js                 # Secure IPC bridge
 ├── 📄 package.json               # Dependencies and npm scripts

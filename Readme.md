@@ -84,8 +84,8 @@ MeowLink is a **modern desktop bookmark management application** built with Reac
 ### **Development Setup**
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/meowlink-app.git
-cd meowlink-app
+git clone https://github.com/sangwon0707/meowlink.git
+cd meowlink
 
 # Install dependencies
 npm install

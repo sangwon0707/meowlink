@@ -84,8 +84,8 @@ MeowLink는 React, TypeScript, Electron으로 제작된 **모던 데스크톱 �
 ### **개발 환경 설정**
 ```bash
 # 저장소 클론
-git clone https://github.com/yourusername/meowlink-app.git
-cd meowlink-app
+git clone https://github.com/sangwon0707/meowlink.git
+cd meowlink
 
 # 의존성 설치
 npm install
@@ -144,7 +144,7 @@ npm run rebuild
 ## 📁 **프로젝트 구조**
 
 ```
-meowlink-app/
+meowlink/
 ├── main.js                 # Electron 메인 프로세스
 ├── preload.js             # 보안 IPC 브리지
 ├── package.json           # 의존성 및 스크립트
