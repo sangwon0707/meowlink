@@ -1,15 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
-  target: 'electron-renderer',
-  entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
-    clean: true,
-    publicPath: './',
-  },
+module.exports = (env, argv) => {
+  const isProduction = argv.mode === 'production';
+  
+  return {
+    target: 'electron-renderer',
+    entry: './src/index.tsx',
+    output: {
+      path: path.resolve(__dirname, 'build'),
+      filename: 'bundle.js',
+      clean: true,
+      publicPath: './',
+    },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
@@ -38,7 +42,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -59,14 +63,18 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-    }),
-  ],
-  devtool: 'source-map',
-  externals: {
-    'sqlite3': 'commonjs sqlite3',
-  },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: 'index.html',
+      }),
+      ...(isProduction ? [new MiniCssExtractPlugin({
+        filename: 'styles.css',
+      })] : []),
+    ],
+    devtool: 'source-map',
+    externals: {
+      'sqlite3': 'commonjs sqlite3',
+    },
+  };
 };
