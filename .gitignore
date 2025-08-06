@@ -131,3 +131,17 @@ app-builds/
 # pnpm-lock.yaml     # Keep this if using pnpm
 
 # Note: shadcn/ui components in src/components/ui/ should be committed
+
+# Development and internal documentation files
+FOLDER_RENAME_GUIDE.md
+PROJECT_STRUCTURE.md
+SHADCN_INSTALLATION.md
+VERSION_MANAGEMENT.md
+frontend_ai_guidelines.md
+roadmap.md
+CLAUDE.md
+
+# Keep only public README files
+!README.md
+!README_ENG.md
+!README_KOREAN.md
