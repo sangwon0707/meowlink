@@ -1,6 +1,6 @@
 # 🐱 MeowLink
 
-![MeowLink](screenshots/splash_screen.png)
+![MeowLink](screenshots/MeowLink_splash.png)
 
 **Modern Bookmark Management App for Developers**
 
