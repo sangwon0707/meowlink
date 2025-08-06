@@ -141,8 +141,8 @@ npm start
 #### **🚀 프로덕션 빌드 (배포용)**
 
 ```bash
-# 최종 사용자를 위한 플랫폼별 빌드
-npm run build-mac     # → dist/MeowLink-0.1.0.dmg (macOS 설치 파일)
+# 최종 사용자를 위한 플랫폼별 빌드 - 플랫폼 빌드는 macOS에서만 테스트되었습니다
+npm run build-mac     # → dist/mac/MeowLink.app (macOS 앱 파일)
 npm run build-win     # → dist/MeowLink Setup 0.1.0.exe (Windows 설치 파일)
 npm run build-linux  # → dist/MeowLink-0.1.0.AppImage (Linux 실행 파일)
 
@@ -167,9 +167,9 @@ npm run pack
 
 빌드 후 `dist/` 폴더에서 배포 가능한 파일을 찾을 수 있습니다:
 
-- **DMG 파일** - macOS 사용자는 Applications 폴더로 드래그
-- **EXE 파일** - Windows 사용자는 설치 프로그램 실행
-- **AppImage 파일** - Linux 사용자는 실행 가능하게 만든 후 실행
+- **APP 파일** - macOS: `MeowLink.app`을 Applications 폴더로 드래그 앤 드롭
+- **EXE 파일** - Windows: 설치 프로그램 실행
+- **AppImage 파일** - Linux: 실행 권한 부여 후 실행
 - **Node.js 불필요** - 최종 사용자는 클릭만 하면 실행!
 
 ### **유지보수**

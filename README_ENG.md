@@ -131,8 +131,8 @@ npm start
 
 #### **🚀 Production Builds (For Distribution)**
 ```bash
-# Platform-specific builds for end users
-npm run build-mac     # → dist/MeowLink-0.1.0.dmg (macOS installer)
+# Platform-specific builds for end users - Platform builds tested only on macOS
+npm run build-mac     # → dist/mac/MeowLink.app (macOS app file)
 npm run build-win     # → dist/MeowLink Setup 0.1.0.exe (Windows installer)
 npm run build-linux  # → dist/MeowLink-0.1.0.AppImage (Linux executable)
 
@@ -154,9 +154,9 @@ npm run pack
 
 #### **📦 Distribution Files**
 After building, find your distributable files in `dist/`:
-- **DMG files** - macOS users drag to Applications folder
-- **EXE files** - Windows users run installer
-- **AppImage files** - Linux users make executable and run
+- **APP files** - macOS: Drag `MeowLink.app` to Applications folder
+- **EXE files** - Windows: Run installer
+- **AppImage files** - Linux: Make executable and run
 - **No Node.js required** - End users just click and run!
 
 ### **Maintenance**
