@@ -18,6 +18,30 @@ MeowLink는 React, TypeScript, Electron으로 제작된 **모던 데스크톱 �
 
 > **"완벽한 북마크 도우미 🐱"**
 
+## 📸 **스크린샷**
+
+### 🌅 **라이트 모드**
+<div align="center">
+
+**메인 인터페이스**
+![MeowLink 메인 화면 - 라이트](screenshots/MeowLink_main_light.png)
+
+**링크 추가 모달**
+![링크 추가 모달 - 라이트](screenshots/LinkModal_light.png)
+
+</div>
+
+### 🌙 **다크 모드**
+<div align="center">
+
+**메인 인터페이스**
+![MeowLink 메인 화면 - 다크](screenshots/MeowLink_main_dark.png)
+
+**링크 추가 모달**
+![링크 추가 모달 - 다크](screenshots/LinkModal_dark.png)
+
+</div>
+
 ## ✨ **주요 기능**
 
 ### 🔗 **스마트 링크 관리**

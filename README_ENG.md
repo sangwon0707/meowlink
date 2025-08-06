@@ -18,6 +18,30 @@ MeowLink is a **modern desktop bookmark management application** built with Reac
 
 > **"Your purr-fect bookmark companion 🐱"**
 
+## 📸 **Screenshots**
+
+### 🌅 **Light Mode**
+<div align="center">
+
+**Main Interface**
+![MeowLink Main Screen - Light](screenshots/MeowLink_main_light.png)
+
+**Add Link Modal**
+![Add Link Modal - Light](screenshots/LinkModal_light.png)
+
+</div>
+
+### 🌙 **Dark Mode**
+<div align="center">
+
+**Main Interface**
+![MeowLink Main Screen - Dark](screenshots/MeowLink_main_dark.png)
+
+**Add Link Modal**
+![Add Link Modal - Dark](screenshots/LinkModal_dark.png)
+
+</div>
+
 ## ✨ **Features**
 
 ### 🔗 **Smart Link Management**
