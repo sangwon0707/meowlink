@@ -1,7 +1,5 @@
 # 🐱 MeowLink
 
-![MeowLink](screenshots/MeowLink_splash.png)
-
 **Modern Bookmark Management App for Developers**
 
 *Organize, save, and revisit your valuable links with beautiful design*

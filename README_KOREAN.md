@@ -1,7 +1,5 @@
 # 🐱 MeowLink
 
-![MeowLink](screenshots/MeowLink_splash.png)
-
 **개발자를 위한 모던 북마크 관리 앱**
 
 _아름다운 디자인으로 소중한 링크를 정리하고 관리하세요_
