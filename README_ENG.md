@@ -1,4 +1,4 @@
-# 🐱 MeowLink
+# <img src="assets/icon.png" width="64" align="left"> MeowLink
 
 **Modern Bookmark Management App for Developers**
 

@@ -1,4 +1,4 @@
-# 🐱 MeowLink
+# <img src="assets/icon.png" width="64" align="left"> MeowLink
 
 **개발자를 위한 모던 북마크 관리 앱**
 
