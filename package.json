@@ -80,7 +80,7 @@
       "category": "public.app-category.productivity",
       "target": [
         {
-          "target": "dir",
+          "target": "dmg",
           "arch": [
             "x64"
           ]
