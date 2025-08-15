@@ -71,7 +71,7 @@ export function WelcomeDialog({ isOpen, onClose }: WelcomeDialogProps) {
               <img 
                 src="../assets/meowlink-icon.png" 
                 alt="MeowLink" 
-                className="w-12 h-12"
+                className="w-15 h-15"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none'
                 }}
@@ -171,6 +171,14 @@ export function WelcomeDialog({ isOpen, onClose }: WelcomeDialogProps) {
             disabled={isLoading || !databasePath}
           >
             Copy Path
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => window.open('https://github.com/sangwon0707/meowlink/blob/main/Readme.md', '_blank')}
+            className="flex items-center gap-2"
+          >
+            <Info className="h-4 w-4" />
+            Github Link
           </Button>
           <div className="flex-1"></div>
           <Button

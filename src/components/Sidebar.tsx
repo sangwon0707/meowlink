@@ -1,12 +1,15 @@
 import React from 'react'
-import { List, Star, Hash, Moon, Sun, Info } from 'lucide-react'
+import { List, Star, Hash, Moon, Sun, HelpCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { FilterType } from '../types'
 import { useApp } from '../contexts/AppContext'
-import { getDisplayVersion } from '../utils/version'
 
-export function Sidebar() {
+interface SidebarProps {
+  onShowWelcome?: () => void
+}
+
+export function Sidebar({ onShowWelcome }: SidebarProps) {
   const { state, dispatch } = useApp()
   const { links, selectedFilter, isDarkMode } = state
 
@@ -48,27 +51,31 @@ export function Sidebar() {
       {/* Header */}
       <div className="p-3 border-b border-sidebar-border">
         <div className="flex items-center gap-4 mb-2">
-          <div className="w-20 h-20 flex items-center justify-center">
+          <div className="w-16 h-16 bg-brand-orange rounded-xl flex items-center justify-center shadow-lg">
             <img 
               src="../assets/meowlink-icon.png" 
               alt="MeowLink" 
-              className="w-16 h-16"
+              className="w-15 h-15"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none'
               }}
             />
           </div>
-          <div>
-            <h1 className="text-xl font-bold text-sidebar-foreground">MeowLink</h1>
+          <div className="flex-1">
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl font-bold text-sidebar-foreground">MeowLink</h1>
+            </div>
             <div className="flex items-center gap-2">
-              <p className="text-sm text-sidebar-muted-foreground font-medium">{getDisplayVersion()}</p>
-              <button
-                onClick={() => window.open('https://github.com/sangwon0707/meowlink', '_blank')}
-                className="group relative inline-flex items-center justify-center p-1 rounded-full hover:bg-sidebar-accent transition-colors"
-                title="Visit GitHub Repository"
-              >
-                <Info className="h-3 w-3 text-sidebar-muted-foreground group-hover:text-sidebar-accent-foreground transition-colors" />
-              </button>
+              {onShowWelcome && (
+                <button
+                  onClick={onShowWelcome}
+                  className="group flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-sidebar-accent transition-colors text-sidebar-muted-foreground hover:text-sidebar-accent-foreground"
+                  title="Show About & Welcome Guide"
+                >
+                  <HelpCircle className="h-3.5 w-3.5" />
+                  <span className="text-sm font-medium underline">About</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -127,7 +134,7 @@ export function Sidebar() {
                     dispatch({ type: 'SET_FILTER', payload: 'all' })
                     dispatch({ type: 'SET_SEARCH_QUERY', payload: tag })
                   }}
-                  className="w-full justify-start gap-2 px-3 py-2 h-auto text-sm font-normal hover:bg-sidebar-accent text-sidebar-muted-foreground hover:text-sidebar-accent-foreground transition-colors"
+                  className="w-full justify-start gap-2 px-3 py-2 h-auto text-sm font-normal hover-hashtag text-sidebar-muted-foreground hover:text-sidebar-accent-foreground transition-colors"
                 >
                   <span className="text-sidebar-muted-foreground">#</span>
                   <span className="flex-1 text-left truncate">{tag}</span>
@@ -156,7 +163,7 @@ export function Sidebar() {
               <Moon className="h-4 w-4 text-slate-600 dark:text-slate-400 transition-colors" />
             )}
           </div>
-          <span className="flex-1 text-left font-medium">{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+          <span className="flex-1 text-left font-medium">{isDarkMode ? 'Switch Light Mode' : 'Switch Dark Mode'}</span>
           
           {/* Enhanced Toggle Switch */}
           <div 

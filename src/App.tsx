@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Search, Plus, Menu } from 'lucide-react'
+import { Search, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useApp } from './contexts/AppContext'
@@ -9,10 +9,11 @@ import { AddLinkModal } from './components/AddLinkModal'
 import { WelcomeDialog } from './components/WelcomeDialog'
 import { LinkItem } from './types'
 import { correctUrl, getFaviconUrl } from './utils/urlUtils'
+import { getDisplayVersion } from './utils/version'
 
 export default function App() {
   const { state, dispatch } = useApp()
-  const { links, searchQuery, selectedFilter, isDarkMode, isLoading, error } = state
+  const { links, searchQuery, selectedFilter, isDarkMode, isCompactView, isLoading, error } = state
   
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [editingLink, setEditingLink] = useState<LinkItem | null>(null)
@@ -107,6 +108,10 @@ export default function App() {
     localStorage.setItem('meowlink-welcome-shown', 'true')
   }
 
+  const handleShowWelcome = () => {
+    setShowWelcome(true)
+  }
+
   const handleSaveLink = async (linkData: any) => {
     try {
       const correctedUrl = correctUrl(linkData.url)
@@ -178,7 +183,7 @@ export default function App() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Custom Electron Titlebar */}
       <div 
-        className="h-10 bg-card/50 backdrop-blur-sm border-b border-border/50 flex items-center justify-center px-4 relative z-50"
+        className="h-10 bg-background border-b border-border/50 flex items-center justify-center px-4 relative z-50"
         style={{ 
           WebkitAppRegion: 'drag',
           WebkitUserSelect: 'none'
@@ -188,15 +193,26 @@ export default function App() {
           className="flex items-center gap-2 text-sm font-medium text-foreground/80"
           style={{ WebkitAppRegion: 'no-drag' } as React.CSSProperties}
         >
-          <img 
-            src="../assets/meowlink-icon.png" 
-            alt="MeowLink" 
-            className="w-4 h-4"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = 'none'
-            }}
-          />
-          MeowLink
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-1 rounded-sm hover:bg-muted transition-colors"
+            title="Toggle Sidebar"
+          >
+            <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+            </svg>
+          </button>
+          <div className="w-5 h-5 bg-brand-orange rounded-sm flex items-center justify-center shadow-sm">
+            <img 
+              src="../assets/meowlink-icon.png" 
+              alt="MeowLink" 
+              className="w-4 h-4"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none'
+              }}
+            />
+          </div>
+          MeowLink - {getDisplayVersion()}
         </div>
       </div>
 
@@ -206,50 +222,75 @@ export default function App() {
         <div className={`
           ${sidebarOpen ? 'w-72' : 'w-0'} 
           transition-all duration-300 ease-in-out 
-          border-r border-border bg-card/30 backdrop-blur-sm
+          border-r border-border bg-background
           overflow-hidden
         `}>
-          <Sidebar />
+          <Sidebar onShowWelcome={handleShowWelcome} />
         </div>
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* Top Header Bar */}
-          <header className="h-16 border-b border-border bg-card/30 backdrop-blur-sm px-6 flex items-center gap-4">
-            {/* Sidebar Toggle (Mobile) */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="lg:hidden"
-            >
-              <Menu className="h-4 w-4" />
-              <span className="sr-only">Toggle sidebar</span>
-            </Button>
-
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search your bookmarks..."
-                value={searchQuery}
-                onChange={(e) => dispatch({ type: 'SET_SEARCH_QUERY', payload: e.target.value })}
-                className="pl-9 bg-background/50 border-border/50 focus:bg-background focus:border-border"
-              />
+          <header className="h-16 border-b border-border bg-background px-6 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              {/* Search Bar */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search your bookmarks..."
+                  value={searchQuery}
+                  onChange={(e) => dispatch({ type: 'SET_SEARCH_QUERY', payload: e.target.value })}
+                  className="pl-9 w-80 bg-card border-border/50 focus:bg-card focus:border-border"
+                />
+              </div>
             </div>
 
-            {/* Add Link Button */}
-            <Button 
-              onClick={handleAddLink} 
-              className="gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-orange-foreground shadow-sm"
-            >
-              <Plus className="h-4 w-4" />
-              Add Link
-            </Button>
+            <div className="flex items-center gap-4">
+              {/* Fold Toggle Switch */}
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-medium text-foreground">Fold</span>
+                <div 
+                  onClick={() => dispatch({ type: 'TOGGLE_COMPACT_VIEW' })}
+                  className={`
+                    relative w-10 h-5 rounded-full transition-all duration-300 shadow-inner border cursor-pointer
+                    ${isCompactView 
+                      ? 'bg-brand-orange border-brand-orange shadow-brand-orange/10' 
+                      : 'bg-muted border-border shadow-border/10'
+                    }
+                  `}
+                  role="switch"
+                  aria-checked={isCompactView}
+                  title={isCompactView ? "Switch to full view" : "Switch to compact view"}
+                >
+                  <div className={`
+                    w-4 h-4 rounded-full absolute top-0.5 transition-all duration-300 shadow-md border
+                    ${isCompactView 
+                      ? 'translate-x-5 bg-brand-orange-foreground border-brand-orange-foreground/20' 
+                      : 'translate-x-0.5 bg-foreground border-foreground/20'
+                    }
+                  `} />
+                  
+                  {/* Visual indicator dots */}
+                  <div className="absolute inset-0 flex items-center justify-between px-1">
+                    <div className={`w-1 h-1 rounded-full transition-opacity ${isCompactView ? 'opacity-0' : 'opacity-40 bg-foreground'}`} />
+                    <div className={`w-1 h-1 rounded-full transition-opacity ${isCompactView ? 'opacity-40 bg-brand-orange-foreground' : 'opacity-0'}`} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Add Link Button */}
+              <Button 
+                onClick={handleAddLink} 
+                className="gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-orange-foreground shadow-sm"
+              >
+                <Plus className="h-4 w-4" />
+                Add Link
+              </Button>
+            </div>
           </header>
 
           {/* Content Area */}
-          <main className="flex-1 overflow-auto">
+          <main className="flex-1 overflow-auto bg-content">
             <div className="p-6">
               {error ? (
                 // Error State
@@ -321,6 +362,7 @@ export default function App() {
                         key={link.id}
                         link={link}
                         onEdit={handleEditLink}
+                        isCompact={isCompactView}
                       />
                     ))}
                   </div>

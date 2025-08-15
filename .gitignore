@@ -140,6 +140,10 @@ VERSION_MANAGEMENT.md
 frontend_ai_guidelines.md
 roadmap.md
 CLAUDE.md
+extension_roadmap.md
+
+# Unused database implementations
+utils/database-electron.ts
 
 # Keep only public README files
 !README.md
