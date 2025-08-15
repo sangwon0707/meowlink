@@ -1,3 +1,16 @@
+/**
+ * LEGACY CODE - DO NOT USE
+ * 
+ * This file is an unused alternative database implementation using better-sqlite3.
+ * The active implementation is in utils/database-sqlite3.js which uses the sqlite3 package.
+ * 
+ * This file exists for reference only and is not imported or used anywhere in the codebase.
+ * It has been added to .gitignore to prevent accidental commits.
+ * 
+ * @deprecated Use utils/database-sqlite3.js instead
+ */
+
+/*
 // Electron 환경에서 동작하는 SQLite 데이터베이스 매니저
 import Database from "better-sqlite3"
 import path from "path"
@@ -265,3 +278,4 @@ class ElectronDatabaseManager {
 }
 
 export default ElectronDatabaseManager
+*/

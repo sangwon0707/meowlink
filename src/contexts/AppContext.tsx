@@ -7,6 +7,7 @@ interface AppState {
   searchQuery: string
   selectedFilter: FilterType
   isDarkMode: boolean
+  isCompactView: boolean
   isLoading: boolean
   error: string | null
 }
@@ -20,6 +21,7 @@ type AppAction =
   | { type: 'SET_SEARCH_QUERY'; payload: string }
   | { type: 'SET_FILTER'; payload: FilterType }
   | { type: 'TOGGLE_DARK_MODE' }
+  | { type: 'TOGGLE_COMPACT_VIEW' }
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'SET_ERROR'; payload: string | null }
 
@@ -37,6 +39,7 @@ const initialState: AppState = {
   searchQuery: '',
   selectedFilter: 'all',
   isDarkMode: getInitialDarkMode(),
+  isCompactView: false,
   isLoading: false,
   error: null,
 }
@@ -79,6 +82,9 @@ function appReducer(state: AppState, action: AppAction): AppState {
         localStorage.setItem('meowlink-dark-mode', JSON.stringify(newDarkMode))
       }
       return { ...state, isDarkMode: newDarkMode }
+    
+    case 'TOGGLE_COMPACT_VIEW':
+      return { ...state, isCompactView: !state.isCompactView }
     
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload }

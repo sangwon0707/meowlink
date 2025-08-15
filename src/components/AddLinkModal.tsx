@@ -122,7 +122,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 onChange={handleInputChange}
                 required
                 autoFocus={!link}
-                className="h-12 text-base bg-background/50 border-border/50 focus:bg-background focus:border-primary/50 transition-all"
+                className="h-12 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
               <p className="text-xs text-muted-foreground flex items-center gap-1">
                 💡 Don't worry about https:// - we'll add it automatically
@@ -144,7 +144,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 placeholder="Bookmark title (we'll try to fetch automatically)"
                 value={formData.title}
                 onChange={handleInputChange}
-                className="h-12 text-base bg-background/50 border-border/50 focus:bg-background focus:border-primary/50 transition-all"
+                className="h-12 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
             </div>
 
@@ -154,7 +154,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 <div className="p-1 bg-purple-100 dark:bg-purple-900/30 rounded-md">
                   <FileText className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
                 </div>
-                Notes & Description
+                Notes & Description (Keep it short for quick future reference)
               </Label>
               <Textarea
                 id="memo"
@@ -163,7 +163,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 value={formData.memo}
                 onChange={handleInputChange}
                 rows={4}
-                className="resize-none text-base bg-background/50 border-border/50 focus:bg-background focus:border-primary/50 transition-all"
+                className="resize-none text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
             </div>
 
@@ -182,7 +182,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 placeholder="Add tags separated by commas (e.g., react, javascript, tutorial)"
                 value={formData.tags}
                 onChange={handleInputChange}
-                className="h-12 text-base bg-background/50 border-border/50 focus:bg-background focus:border-primary/50 transition-all"
+                className="h-12 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
               {tagList.length > 0 && (
                 <div className="flex flex-wrap gap-2 p-4 bg-muted/50 rounded-xl border border-border/50">
