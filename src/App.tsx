@@ -117,10 +117,18 @@ export default function App() {
       const correctedUrl = correctUrl(linkData.url)
       const urlObj = new URL(correctedUrl)
       
+      // For editing: always use the user's title (even if empty)
+      // For adding: use user's title if provided, otherwise auto-fetch
+      let finalTitle = linkData.title
+      if (!editingLink && (!linkData.title || linkData.title.trim() === '')) {
+        // Only auto-generate title for NEW links when user didn't provide one
+        finalTitle = `Loading... ${urlObj.hostname}`
+      }
+      
       const newLinkData = {
         ...linkData,
         url: correctedUrl,
-        title: linkData.title || `Loading... ${urlObj.hostname}`,
+        title: finalTitle,
         domain: urlObj.hostname,
         favicon: getFaviconUrl(urlObj.hostname, correctedUrl),
         tags: linkData.tags || [],
