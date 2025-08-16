@@ -89,7 +89,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
   return (
     <Dialog open={true} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-hidden bg-card/95 backdrop-blur-sm border-border/50 shadow-2xl">
-        <DialogHeader className="space-y-4 pb-6 border-b border-border/50">
+        <DialogHeader className="space-y-3 pb-4 border-b border-border/50">
           <DialogTitle className="text-2xl font-bold flex items-center gap-3">
             <div className="p-3 bg-primary/10 rounded-xl border border-primary/20">
               <Link className="h-6 w-6 text-primary" />
@@ -103,10 +103,10 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
           </DialogTitle>
         </DialogHeader>
 
-        <div className="overflow-y-auto max-h-[calc(90vh-200px)]">
-          <form onSubmit={handleSubmit} className="space-y-6 py-6">
+        <div className="overflow-y-auto max-h-[calc(90vh-160px)]">
+          <form onSubmit={handleSubmit} className="space-y-3 py-3">
             {/* URL Field */}
-            <div className="space-y-3">
+            <div className="space-y-1">
               <Label htmlFor="url" className="text-sm font-semibold flex items-center gap-2 text-foreground">
                 <div className="p-1 bg-blue-100 dark:bg-blue-900/30 rounded-md">
                   <Globe className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
@@ -122,7 +122,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 onChange={handleInputChange}
                 required
                 autoFocus={!link}
-                className="h-12 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
+                className="h-10 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
               <p className="text-xs text-muted-foreground flex items-center gap-1">
                 💡 Don't worry about https:// - we'll add it automatically
@@ -130,7 +130,7 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
             </div>
 
             {/* Title Field */}
-            <div className="space-y-3">
+            <div className="space-y-1">
               <Label htmlFor="title" className="text-sm font-semibold flex items-center gap-2 text-foreground">
                 <div className="p-1 bg-green-100 dark:bg-green-900/30 rounded-md">
                   <FileText className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
@@ -144,12 +144,12 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 placeholder="Bookmark title (we'll try to fetch automatically)"
                 value={formData.title}
                 onChange={handleInputChange}
-                className="h-12 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
+                className="h-10 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
             </div>
 
             {/* Memo Field */}
-            <div className="space-y-3">
+            <div className="space-y-1">
               <Label htmlFor="memo" className="text-sm font-semibold flex items-center gap-2 text-foreground">
                 <div className="p-1 bg-purple-100 dark:bg-purple-900/30 rounded-md">
                   <FileText className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
@@ -162,13 +162,13 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 placeholder="Add your personal notes, summary, or why this bookmark is important to you..."
                 value={formData.memo}
                 onChange={handleInputChange}
-                rows={4}
+                rows={2}
                 className="resize-none text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
             </div>
 
             {/* Tags Field */}
-            <div className="space-y-3">
+            <div className="space-y-1">
               <Label htmlFor="tags" className="text-sm font-semibold flex items-center gap-2 text-foreground">
                 <div className="p-1 bg-orange-100 dark:bg-orange-900/30 rounded-md">
                   <Tag className="h-3.5 w-3.5 text-orange-600 dark:text-orange-400" />
@@ -182,10 +182,10 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
                 placeholder="Add tags separated by commas (e.g., react, javascript, tutorial)"
                 value={formData.tags}
                 onChange={handleInputChange}
-                className="h-12 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
+                className="h-10 text-base bg-background/50 modal-input-border focus:bg-background focus:border-primary/50 transition-all"
               />
               {tagList.length > 0 && (
-                <div className="flex flex-wrap gap-2 p-4 bg-muted/50 rounded-xl border border-border/50">
+                <div className="flex flex-wrap gap-2 p-2 bg-muted/50 rounded-xl border border-border/50">
                   {tagList.map((tag, index) => (
                     <Badge
                       key={index}
@@ -210,19 +210,19 @@ export function AddLinkModal({ link, onSave, onClose }: AddLinkModalProps) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 pt-6 border-t border-border/50">
+        <div className="flex gap-3 pt-3 border-t border-border/50">
           <Button 
             type="button" 
             variant="outline" 
             onClick={onClose} 
-            className="flex-1 h-12 font-medium bg-background/50 hover:bg-muted transition-colors"
+            className="flex-1 h-10 font-medium bg-background/50 hover:bg-muted transition-colors"
           >
             Cancel
           </Button>
           <Button 
             type="submit" 
             onClick={handleSubmit}
-            className="flex-1 h-12 font-semibold bg-brand-orange hover:bg-brand-orange-dark text-brand-orange-foreground shadow-sm transition-all hover:shadow-md" 
+            className="flex-1 h-10 font-semibold bg-brand-orange hover:bg-brand-orange-dark text-brand-orange-foreground shadow-sm transition-all hover:shadow-md" 
             disabled={!formData.url.trim()}
           >
             {link ? "💾 Update Bookmark" : "✨ Save Bookmark"}
