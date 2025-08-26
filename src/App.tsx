@@ -74,13 +74,24 @@ export default function App() {
     // Search filter
     if (searchQuery) {
       const query = searchQuery.toLowerCase()
-      const matchesTitle = link.title.toLowerCase().includes(query)
-      const matchesMemo = link.memo?.toLowerCase().includes(query)
-      const matchesTags = link.tags.some(tag => tag.toLowerCase().includes(query))
-      const matchesUrl = link.url.toLowerCase().includes(query)
       
-      if (!matchesTitle && !matchesMemo && !matchesTags && !matchesUrl) {
-        return false
+      // Check if it's a hashtag search (starts with #)
+      if (query.startsWith('#')) {
+        const tagQuery = query.slice(1) // Remove the # prefix
+        const matchesTags = link.tags.some(tag => tag.toLowerCase().includes(tagQuery))
+        if (!matchesTags) {
+          return false
+        }
+      } else {
+        // Regular search across all fields
+        const matchesTitle = link.title.toLowerCase().includes(query)
+        const matchesMemo = link.memo?.toLowerCase().includes(query)
+        const matchesTags = link.tags.some(tag => tag.toLowerCase().includes(query))
+        const matchesUrl = link.url.toLowerCase().includes(query)
+        
+        if (!matchesTitle && !matchesMemo && !matchesTags && !matchesUrl) {
+          return false
+        }
       }
     }
 
@@ -117,10 +128,18 @@ export default function App() {
       const correctedUrl = correctUrl(linkData.url)
       const urlObj = new URL(correctedUrl)
       
+      // For editing: always use the user's title (even if empty)
+      // For adding: use user's title if provided, otherwise auto-fetch
+      let finalTitle = linkData.title
+      if (!editingLink && (!linkData.title || linkData.title.trim() === '')) {
+        // Only auto-generate title for NEW links when user didn't provide one
+        finalTitle = `Loading... ${urlObj.hostname}`
+      }
+      
       const newLinkData = {
         ...linkData,
         url: correctedUrl,
-        title: linkData.title || `Loading... ${urlObj.hostname}`,
+        title: finalTitle,
         domain: urlObj.hostname,
         favicon: getFaviconUrl(urlObj.hostname, correctedUrl),
         tags: linkData.tags || [],
@@ -237,7 +256,7 @@ export default function App() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search your bookmarks..."
+                  placeholder="Search bookmarks... (use #tag for hashtag-only search)"
                   value={searchQuery}
                   onChange={(e) => dispatch({ type: 'SET_SEARCH_QUERY', payload: e.target.value })}
                   className="pl-9 w-80 bg-card border-border/50 focus:bg-card focus:border-border"

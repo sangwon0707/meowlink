@@ -13,10 +13,10 @@ export function getAppVersion(): string {
     }
     
     // Fallback - this will be updated when package.json is updated
-    return '0.1.0'
+    return '0.1.1'
   } catch (error) {
     console.warn('Could not get app version:', error)
-    return '0.1.0'
+    return '0.1.1'
   }
 }
 

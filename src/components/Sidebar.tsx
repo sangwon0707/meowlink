@@ -130,9 +130,9 @@ export function Sidebar({ onShowWelcome }: SidebarProps) {
                   key={tag}
                   variant="ghost"
                   onClick={() => {
-                    // When clicking a tag, search across all bookmarks and reset filter to 'all'
+                    // When clicking a tag, search only within tags using # prefix
                     dispatch({ type: 'SET_FILTER', payload: 'all' })
-                    dispatch({ type: 'SET_SEARCH_QUERY', payload: tag })
+                    dispatch({ type: 'SET_SEARCH_QUERY', payload: `#${tag}` })
                   }}
                   className="w-full justify-start gap-2 px-3 py-2 h-auto text-sm font-normal hover-hashtag text-sidebar-muted-foreground hover:text-sidebar-accent-foreground transition-colors"
                 >

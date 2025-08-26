@@ -359,7 +359,8 @@ ipcMain.handle("db-add-link", async (event, linkData) => {
     
     const enrichedLinkData = {
       ...linkData,
-      title: metadata.title,
+      // Only use metadata title if user didn't provide one
+      title: linkData.title && linkData.title.trim() !== '' ? linkData.title : metadata.title,
       domain: metadata.domain,
       favicon: isGitHub ? linkData.favicon : metadata.favicon,
     }
